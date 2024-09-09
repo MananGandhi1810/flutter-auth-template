@@ -1,3 +1,4 @@
+import 'package:auth_template/providers/auth.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -14,7 +15,9 @@ class RootApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiProvider(
       providers: [
-        
+        ChangeNotifierProvider(
+          create: (_) => AuthProvider(),
+        ),
       ],
       child: MaterialApp.router(
         routerConfig: AppRouter.router,
