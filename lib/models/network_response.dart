@@ -10,4 +10,6 @@ class NetworkResponseModel {
     required this.message,
     this.data,
   });
+
+  post() {}
 }
