@@ -5,6 +5,7 @@ import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 
 import '../../models/network_response.dart';
+import '../../utils/validators.dart';
 
 class RegisterPage extends StatefulWidget {
   const RegisterPage({super.key});
@@ -52,6 +53,12 @@ class _RegisterPageState extends State<RegisterPage> {
                     ),
                     label: const Text("Email"),
                   ),
+                  validator: (value) {
+                    if (!Validators.validateEmail(value ?? "")) {
+                      return "Please enter a valid email";
+                    }
+                    return null;
+                  },
                 ),
                 const Gap(12),
                 TextFormField(

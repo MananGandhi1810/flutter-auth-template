@@ -1,9 +1,10 @@
-import 'package:auth_template/providers/auth.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 
+import '../../providers/auth.dart';
+import '../../utils/validators.dart';
 import '../../models/network_response.dart';
 
 class LoginPage extends StatefulWidget {
@@ -41,6 +42,12 @@ class _LoginPageState extends State<LoginPage> {
                     ),
                     label: const Text("Email"),
                   ),
+                  validator: (value) {
+                    if (!Validators.validateEmail(value ?? "")) {
+                      return "Please enter a valid email";
+                    }
+                    return null;
+                  },
                 ),
                 const Gap(12),
                 TextFormField(
