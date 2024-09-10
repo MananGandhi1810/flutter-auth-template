@@ -13,7 +13,11 @@ class UserModel {
     return UserModel(
       email: data['email'],
       name: data['name'],
-      token: data['token'] ?? "",
+      token: data['token'],
     );
+  }
+
+  void setToken(String token) {
+    this.token = token;
   }
 }

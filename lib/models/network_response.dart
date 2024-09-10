@@ -11,5 +11,12 @@ class NetworkResponseModel {
     this.data,
   });
 
-  post() {}
+  Map<String, dynamic> toJson() {
+    return {
+      "statusCode": statusCode,
+      "success": success,
+      "message": message,
+      "data": data,
+    };
+  }
 }

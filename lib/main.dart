@@ -5,7 +5,7 @@ import 'package:provider/provider.dart';
 import 'app_router.dart';
 
 void main() {
-  runApp(RootApp());
+  runApp(const RootApp());
 }
 
 class RootApp extends StatelessWidget {
