@@ -1,10 +1,9 @@
 import 'dart:convert';
-
-import 'package:auth_template/models/network_response.dart';
-import 'package:auth_template/repositories/auth.dart';
-import 'package:auth_template/services/persistence.dart';
 import 'package:flutter/material.dart';
 
+import '../models/network_response.dart';
+import '../repositories/auth.dart';
+import '../services/persistence.dart';
 import '../models/user.dart';
 
 class AuthProvider extends ChangeNotifier {
@@ -20,6 +19,7 @@ class AuthProvider extends ChangeNotifier {
         }
         _user = UserModel.fromJson(jsonDecode(value));
         notifyListeners();
+        getUser();
       },
     );
   }
@@ -64,5 +64,34 @@ class AuthProvider extends ChangeNotifier {
     }
   }
 
-  void getUser() {}
+  Future<NetworkResponseModel> getUser() async {
+    try {
+      NetworkResponseModel response =
+          await _authRepository.getUser(user!.token ?? "");
+      if (response.success) {
+        final String originalToken = _user!.token ?? "";
+        _user = UserModel.fromJson(response.data);
+        _user?.setToken(originalToken);
+        _persistenceService.write('user', jsonEncode(_user?.toJson()));
+      } else {
+        _user = null;
+      }
+      notifyListeners();
+      return response;
+    } catch (e) {
+      debugPrint(e.toString());
+      rethrow;
+    }
+  }
+
+  Future<void> logout() async {
+    try {
+      await _persistenceService.delete('user');
+      _user = null;
+      notifyListeners();
+    } catch (e) {
+      debugPrint(e.toString());
+      rethrow;
+    }
+  }
 }

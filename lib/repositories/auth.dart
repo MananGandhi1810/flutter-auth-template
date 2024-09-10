@@ -46,4 +46,17 @@ class AuthRepository {
       rethrow;
     }
   }
+
+  Future<NetworkResponseModel> getUser(String token) async {
+    try {
+      NetworkResponseModel res = await _networkService.get(
+        "${Constants.baseUrl}/auth/user",
+        token: token,
+      );
+      return res;
+    } catch (e) {
+      debugPrint(e.toString());
+      rethrow;
+    }
+  }
 }
