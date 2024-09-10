@@ -1,5 +1,3 @@
-import 'package:auth_template/app_router.dart';
-import 'package:auth_template/main.dart';
 import 'package:auth_template/providers/auth.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';

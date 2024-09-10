@@ -1,8 +1,7 @@
-import 'package:auth_template/providers/auth.dart';
-import 'package:auth_template/services/persistence.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
+import 'providers/auth.dart';
 import 'app_router.dart';
 
 void main() {

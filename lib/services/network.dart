@@ -1,5 +1,3 @@
-import 'dart:convert';
-
 import 'package:auth_template/models/network_response.dart';
 import 'package:dio/dio.dart';
 
