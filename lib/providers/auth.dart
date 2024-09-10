@@ -37,10 +37,8 @@ class AuthProvider extends ChangeNotifier {
       if (response.success) {
         user = UserModel.fromJson(response.data['user']);
         user?.setToken(response.data['token']);
-        return response;
-      } else {
-        throw Exception(response.message);
       }
+      return response;
     } catch (e) {
       debugPrint(e.toString());
       rethrow;

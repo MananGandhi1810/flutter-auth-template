@@ -73,7 +73,20 @@ class _LoginPageState extends State<LoginPage> {
                                   _passwordController.text,
                                 );
                         if (response.success) {
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            SnackBar(
+                              content: Text(response.message),
+                              backgroundColor: Colors.green,
+                            ),
+                          );
                           debugPrint(response.message);
+                        } else {
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            SnackBar(
+                              content: Text(response.message),
+                              backgroundColor: Colors.red[400],
+                            ),
+                          );
                         }
                       } catch (e) {
                         debugPrint(e.toString());
