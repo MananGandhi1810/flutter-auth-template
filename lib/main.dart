@@ -1,4 +1,5 @@
 import 'package:auth_template/providers/auth.dart';
+import 'package:auth_template/services/persistence.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -17,6 +18,7 @@ class RootApp extends StatelessWidget {
       providers: [
         ChangeNotifierProvider(
           create: (_) => AuthProvider(),
+          lazy: false,
         ),
       ],
       child: MaterialApp.router(

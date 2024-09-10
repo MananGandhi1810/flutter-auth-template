@@ -17,6 +17,14 @@ class UserModel {
     );
   }
 
+  Map toJson() {
+    return {
+      "email": email,
+      "name": name,
+      "token": token,
+    };
+  }
+
   void setToken(String token) {
     this.token = token;
   }

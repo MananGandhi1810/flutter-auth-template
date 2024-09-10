@@ -79,7 +79,7 @@ class _LoginPageState extends State<LoginPage> {
                               backgroundColor: Colors.green,
                             ),
                           );
-                          debugPrint(response.message);
+                          context.go("/splash");
                         } else {
                           ScaffoldMessenger.of(context).showSnackBar(
                             SnackBar(
