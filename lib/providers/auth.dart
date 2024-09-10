@@ -24,7 +24,17 @@ class AuthProvider extends ChangeNotifier {
     );
   }
 
-  bool get isLoggedIn => _user != null;
+  Future<bool> get isLoggedIn async {
+    if (_user != null) {
+      return true;
+    }
+    final String userData = await _persistenceService.read('user');
+    if (userData.trim().isEmpty) {
+      return false;
+    }
+    _user = UserModel.fromJson(jsonDecode(userData));
+    return true;
+  }
 
   UserModel? get user => _user;
 

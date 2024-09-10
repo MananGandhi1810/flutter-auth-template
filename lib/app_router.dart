@@ -12,8 +12,8 @@ class AppRouter {
       GoRoute(
         path: "/",
         builder: (context, state) => const HomePage(),
-        redirect: (context, state) {
-          if (!context.read<AuthProvider>().isLoggedIn) {
+        redirect: (context, state) async {
+          if (!(await context.read<AuthProvider>().isLoggedIn)) {
             return '/auth/login';
           } else {
             return null;
@@ -32,8 +32,8 @@ class AppRouter {
             builder: (context, state) => const RegisterPage(),
           ),
         ],
-        redirect: (context, state) {
-          if (context.read<AuthProvider>().isLoggedIn) {
+        redirect: (context, state) async {
+          if (await context.read<AuthProvider>().isLoggedIn) {
             return '/';
           } else {
             return null;

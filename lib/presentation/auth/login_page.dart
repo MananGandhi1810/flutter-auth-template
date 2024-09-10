@@ -59,6 +59,12 @@ class _LoginPageState extends State<LoginPage> {
                     label: const Text("Password"),
                   ),
                   obscureText: true,
+                  validator: (value) {
+                    if (value == null || value.trim().isEmpty) {
+                      return "Password cannot be empty";
+                    }
+                    return null;
+                  },
                 ),
                 const Gap(12),
                 TextButton(

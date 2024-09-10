@@ -43,6 +43,12 @@ class _RegisterPageState extends State<RegisterPage> {
                     ),
                     label: const Text("Name"),
                   ),
+                  validator: (value) {
+                    if (value == null || value.trim().isEmpty) {
+                      return "Name cannot be empty";
+                    }
+                    return null;
+                  },
                 ),
                 const Gap(12),
                 TextFormField(
@@ -70,6 +76,12 @@ class _RegisterPageState extends State<RegisterPage> {
                     label: const Text("Password"),
                   ),
                   obscureText: true,
+                  validator: (value) {
+                    if (value == null || value.trim().isEmpty) {
+                      return "Password cannot be empty";
+                    }
+                    return null;
+                  },
                 ),
                 const Gap(12),
                 TextButton(
