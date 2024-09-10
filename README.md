@@ -1,16 +1,26 @@
-# auth_template
+# Flutter Auth Template
 
-A new Flutter project.
+A Flutter template for JWT based authentication. Works best with my [Express Auth Template](https://github.com/MananGandhi1810/Express-Auth-Template)
 
-## Getting Started
+## Features
 
-This project is a starting point for a Flutter application.
+-   User registration
+-   User login
+-   Email Verification
 
-A few resources to get you started if this is your first Flutter project:
+## How to use
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+1. Clone the repository
+2. Run `flutter pub get`
+3. Update the `baseUrl` in `lib/constants.dart` to your server URL
+4. Run the app
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+## Contributing
+
+1. Fork the repository
+2. Open an issue or feature request
+3. Create a new branch (git checkout -b feature)
+4. Commit your changes (git commit -am 'Add new feature')
+5. Push to the branch (git push origin feature)
+6. Create a new Pull Request
+7. Get your changes merged
