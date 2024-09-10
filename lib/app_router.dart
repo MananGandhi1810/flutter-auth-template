@@ -1,4 +1,5 @@
 import 'package:auth_template/presentation/auth/login_page.dart';
+import 'package:auth_template/presentation/auth/register_page.dart';
 import 'package:auth_template/providers/auth.dart';
 import 'package:flutter/widgets.dart';
 import 'package:go_router/go_router.dart';
@@ -23,7 +24,7 @@ class AppRouter {
           ),
           GoRoute(
             path: "register",
-            builder: (context, state) => const Placeholder(),
+            builder: (context, state) => const RegisterPage(),
           ),
         ],
         redirect: (context, state) {

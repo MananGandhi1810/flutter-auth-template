@@ -20,10 +20,8 @@ class AuthProvider extends ChangeNotifier {
           await _authRepository.register(name, email, password);
       if (response.success) {
         response.data = UserModel.fromJson(response.data);
-        return response;
-      } else {
-        throw Exception(response.message);
       }
+      return response;
     } catch (e) {
       debugPrint(e.toString());
       rethrow;
