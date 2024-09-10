@@ -1,5 +1,8 @@
+import 'package:auth_template/main.dart';
+import 'package:auth_template/providers/auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:provider/provider.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
@@ -10,7 +13,9 @@ class HomePage extends StatelessWidget {
       appBar: AppBar(
         title: const Text("Home Page"),
       ),
-      body: const Placeholder(),
+      body: Center(
+        child: Text("Welcome, ${context.watch<AuthProvider>().user?.name}"),
+      ),
     );
   }
 }

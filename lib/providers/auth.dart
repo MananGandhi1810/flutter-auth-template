@@ -19,6 +19,7 @@ class AuthProvider extends ChangeNotifier {
           return;
         }
         _user = UserModel.fromJson(jsonDecode(value));
+        notifyListeners();
       },
     );
   }
@@ -38,6 +39,7 @@ class AuthProvider extends ChangeNotifier {
       if (response.success) {
         response.data = UserModel.fromJson(response.data);
       }
+      notifyListeners();
       return response;
     } catch (e) {
       debugPrint(e.toString());
@@ -54,6 +56,7 @@ class AuthProvider extends ChangeNotifier {
         _user?.setToken(response.data['token']);
         _persistenceService.write('user', jsonEncode(_user?.toJson()));
       }
+      notifyListeners();
       return response;
     } catch (e) {
       debugPrint(e.toString());
