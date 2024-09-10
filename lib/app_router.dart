@@ -13,8 +13,8 @@ class AppRouter {
         path: "/",
         builder: (context, state) => const HomePage(),
         redirect: (context, state) {
-          if (context.read<AuthProvider>().isLoggedIn) {
-            return '/auth';
+          if (!context.read<AuthProvider>().isLoggedIn) {
+            return '/auth/login';
           } else {
             return null;
           }
