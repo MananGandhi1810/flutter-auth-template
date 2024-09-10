@@ -4,7 +4,7 @@ import 'providers/auth.dart';
 import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 
-import 'presentation/home/home_page.dart';
+import 'presentation/main/home_page.dart';
 
 class AppRouter {
   static GoRouter router = GoRouter(
