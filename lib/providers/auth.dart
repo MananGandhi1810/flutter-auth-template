@@ -64,7 +64,7 @@ class AuthProvider extends ChangeNotifier {
       if (response.success) {
         _user = UserModel.fromJson(response.data['user']);
         _user?.setToken(response.data['token']);
-        _persistenceService.write('user', jsonEncode(_user?.toJson()));
+        await _persistenceService.write('user', jsonEncode(_user?.toJson()));
       }
       notifyListeners();
       return response;
@@ -82,9 +82,10 @@ class AuthProvider extends ChangeNotifier {
         final String originalToken = _user!.token ?? "";
         _user = UserModel.fromJson(response.data);
         _user?.setToken(originalToken);
-        _persistenceService.write('user', jsonEncode(_user?.toJson()));
+        await _persistenceService.write('user', jsonEncode(_user?.toJson()));
       } else {
         _user = null;
+        await _persistenceService.delete('user');
       }
       notifyListeners();
       return response;
