@@ -7,6 +7,7 @@ A Flutter template for JWT based authentication. Works best with my [Express Aut
 -   User registration
 -   User login
 -   Email Verification
+-   Password Reset
 
 ## How to use
 
