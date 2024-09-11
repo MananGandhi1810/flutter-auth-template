@@ -108,6 +108,7 @@ class _RegisterPageState extends State<RegisterPage> {
                               backgroundColor: Colors.green,
                             ),
                           );
+                          context.go("/auth/login");
                         } else {
                           ScaffoldMessenger.of(context).showSnackBar(
                             SnackBar(
