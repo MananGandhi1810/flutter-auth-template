@@ -47,6 +47,63 @@ class AuthRepository {
     }
   }
 
+  Future<NetworkResponseModel> requestPasswordReset(
+    String email,
+  ) async {
+    try {
+      NetworkResponseModel res = await _networkService.post(
+        "${Constants.baseUrl}/auth/forgot-password",
+        {
+          "email": email,
+        },
+      );
+      return res;
+    } catch (e) {
+      debugPrint(e.toString());
+      rethrow;
+    }
+  }
+
+  Future<NetworkResponseModel> verifyOtp(
+    String email,
+    String otp,
+  ) async {
+    try {
+      NetworkResponseModel res = await _networkService.post(
+        "${Constants.baseUrl}/auth/verify-otp",
+        {
+          "email": email,
+          "otp": otp,
+        },
+      );
+      return res;
+    } catch (e) {
+      debugPrint(e.toString());
+      rethrow;
+    }
+  }
+
+  Future<NetworkResponseModel> resetPassword(
+    String email,
+    String password,
+    String token,
+  ) async {
+    try {
+      NetworkResponseModel res = await _networkService.post(
+        "${Constants.baseUrl}/auth/reset-password",
+        {
+          "email": email,
+          "password": password,
+        },
+        token: token,
+      );
+      return res;
+    } catch (e) {
+      debugPrint(e.toString());
+      rethrow;
+    }
+  }
+
   Future<NetworkResponseModel> getUser(String token) async {
     try {
       NetworkResponseModel res = await _networkService.get(

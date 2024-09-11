@@ -74,6 +74,39 @@ class AuthProvider extends ChangeNotifier {
     }
   }
 
+  Future<NetworkResponseModel> requestPasswordReset(String email) async {
+    try {
+      NetworkResponseModel response =
+          await _authRepository.requestPasswordReset(email);
+      return response;
+    } catch (e) {
+      debugPrint(e.toString());
+      rethrow;
+    }
+  }
+
+  Future<NetworkResponseModel> verifyOtp(String email, String otp) async {
+    try {
+      NetworkResponseModel response =
+          await _authRepository.verifyOtp(email, otp);
+      return response;
+    } catch (e) {
+      debugPrint(e.toString());
+      rethrow;
+    }
+  }
+
+  Future<NetworkResponseModel> resetPassword(String email, String password, String token) async {
+    try {
+      NetworkResponseModel response =
+          await _authRepository.resetPassword(email, password, token);
+      return response;
+    } catch (e) {
+      debugPrint(e.toString());
+      rethrow;
+    }
+  }
+
   Future<NetworkResponseModel> getUser() async {
     try {
       NetworkResponseModel response =

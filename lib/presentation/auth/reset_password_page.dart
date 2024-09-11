@@ -7,23 +7,25 @@ import '../../providers/auth.dart';
 import '../../utils/validators.dart';
 import '../../models/network_response.dart';
 
-class LoginPage extends StatefulWidget {
-  const LoginPage({super.key});
+class ResetPasswordPage extends StatefulWidget {
+  const ResetPasswordPage({super.key, required this.email, required this.token});
+
+  final String email;
+  final String token;
 
   @override
-  State<LoginPage> createState() => _LoginPageState();
+  State<ResetPasswordPage> createState() => _ResetPasswordPageState();
 }
 
-class _LoginPageState extends State<LoginPage> {
+class _ResetPasswordPageState extends State<ResetPasswordPage> {
   final GlobalKey<FormState> _formKey = GlobalKey();
-  final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Login"),
+        title: const Text("Reset Password"),
         centerTitle: true,
       ),
       body: Padding(
@@ -34,22 +36,6 @@ class _LoginPageState extends State<LoginPage> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                TextFormField(
-                  controller: _emailController,
-                  decoration: InputDecoration(
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(10),
-                    ),
-                    label: const Text("Email"),
-                  ),
-                  validator: (value) {
-                    if (!Validators.validateEmail(value ?? "")) {
-                      return "Please enter a valid email";
-                    }
-                    return null;
-                  },
-                ),
-                const Gap(12),
                 TextFormField(
                   controller: _passwordController,
                   decoration: InputDecoration(
@@ -66,28 +52,16 @@ class _LoginPageState extends State<LoginPage> {
                     return null;
                   },
                 ),
-                const Gap(12),
-                TextButton(
-                  onPressed: () {
-                    context.pushReplacement("/auth/register");
-                  },
-                  child: const Text("Don't have an account? Register"),
-                ),
-                TextButton(
-                  onPressed: () {
-                    context.pushReplacement("/auth/forgot-password");
-                  },
-                  child: const Text("Forgot your password?"),
-                ),
                 const Gap(8),
                 ElevatedButton(
                   onPressed: () async {
                     if (_formKey.currentState!.validate()) {
                       try {
                         NetworkResponseModel response =
-                            await context.read<AuthProvider>().login(
-                                  _emailController.text,
+                            await context.read<AuthProvider>().resetPassword(
+                                  widget.email,
                                   _passwordController.text,
+                                  widget.token,
                                 );
                         ScaffoldMessenger.of(context).clearSnackBars();
                         if (response.success) {
@@ -97,7 +71,7 @@ class _LoginPageState extends State<LoginPage> {
                               backgroundColor: Colors.green,
                             ),
                           );
-                          context.go("/");
+                          context.push("/auth/login");
                         } else {
                           ScaffoldMessenger.of(context).showSnackBar(
                             SnackBar(
@@ -111,7 +85,7 @@ class _LoginPageState extends State<LoginPage> {
                       }
                     }
                   },
-                  child: const Text("Login"),
+                  child: const Text("Reset"),
                 )
               ],
             ),

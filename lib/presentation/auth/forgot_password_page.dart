@@ -7,23 +7,22 @@ import '../../providers/auth.dart';
 import '../../utils/validators.dart';
 import '../../models/network_response.dart';
 
-class LoginPage extends StatefulWidget {
-  const LoginPage({super.key});
+class ForgotPasswordPage extends StatefulWidget {
+  const ForgotPasswordPage({super.key});
 
   @override
-  State<LoginPage> createState() => _LoginPageState();
+  State<ForgotPasswordPage> createState() => _ForgotPasswordPageState();
 }
 
-class _LoginPageState extends State<LoginPage> {
+class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
   final GlobalKey<FormState> _formKey = GlobalKey();
   final TextEditingController _emailController = TextEditingController();
-  final TextEditingController _passwordController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Login"),
+        title: const Text("Forgot Password"),
         centerTitle: true,
       ),
       body: Padding(
@@ -50,45 +49,22 @@ class _LoginPageState extends State<LoginPage> {
                   },
                 ),
                 const Gap(12),
-                TextFormField(
-                  controller: _passwordController,
-                  decoration: InputDecoration(
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(10),
-                    ),
-                    label: const Text("Password"),
-                  ),
-                  obscureText: true,
-                  validator: (value) {
-                    if (value == null || value.trim().isEmpty) {
-                      return "Password cannot be empty";
-                    }
-                    return null;
-                  },
-                ),
-                const Gap(12),
                 TextButton(
                   onPressed: () {
-                    context.pushReplacement("/auth/register");
+                    context.pushReplacement("/auth/login");
                   },
-                  child: const Text("Don't have an account? Register"),
-                ),
-                TextButton(
-                  onPressed: () {
-                    context.pushReplacement("/auth/forgot-password");
-                  },
-                  child: const Text("Forgot your password?"),
+                  child: const Text("Came here by mistake? Login"),
                 ),
                 const Gap(8),
                 ElevatedButton(
                   onPressed: () async {
                     if (_formKey.currentState!.validate()) {
                       try {
-                        NetworkResponseModel response =
-                            await context.read<AuthProvider>().login(
-                                  _emailController.text,
-                                  _passwordController.text,
-                                );
+                        NetworkResponseModel response = await context
+                            .read<AuthProvider>()
+                            .requestPasswordReset(
+                              _emailController.text,
+                            );
                         ScaffoldMessenger.of(context).clearSnackBars();
                         if (response.success) {
                           ScaffoldMessenger.of(context).showSnackBar(
@@ -97,7 +73,8 @@ class _LoginPageState extends State<LoginPage> {
                               backgroundColor: Colors.green,
                             ),
                           );
-                          context.go("/");
+                          context
+                              .push("/auth/otp-input/${_emailController.text}");
                         } else {
                           ScaffoldMessenger.of(context).showSnackBar(
                             SnackBar(
@@ -111,7 +88,7 @@ class _LoginPageState extends State<LoginPage> {
                       }
                     }
                   },
-                  child: const Text("Login"),
+                  child: const Text("Get OTP"),
                 )
               ],
             ),
