@@ -8,7 +8,8 @@ import '../../utils/validators.dart';
 import '../../models/network_response.dart';
 
 class ResetPasswordPage extends StatefulWidget {
-  const ResetPasswordPage({super.key, required this.email, required this.token});
+  const ResetPasswordPage(
+      {super.key, required this.email, required this.token});
 
   final String email;
   final String token;

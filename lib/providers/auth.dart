@@ -96,7 +96,8 @@ class AuthProvider extends ChangeNotifier {
     }
   }
 
-  Future<NetworkResponseModel> resetPassword(String email, String password, String token) async {
+  Future<NetworkResponseModel> resetPassword(
+      String email, String password, String token) async {
     try {
       NetworkResponseModel response =
           await _authRepository.resetPassword(email, password, token);
