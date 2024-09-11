@@ -20,9 +20,13 @@ class RootApp extends StatelessWidget {
           lazy: false,
         ),
       ],
-      child: MaterialApp.router(
-        routerConfig: AppRouter.router,
-        theme: ThemeData.dark(useMaterial3: true),
+      child: Builder(
+        builder: (context) {
+          return MaterialApp.router(
+            routerConfig: AppRouter(context.watch<AuthProvider>()).getRouter(),
+            theme: ThemeData.dark(useMaterial3: true),
+          );
+        }
       ),
     );
   }

@@ -1,6 +1,5 @@
 import 'package:auth_template/providers/auth.dart';
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 
 class HomePage extends StatefulWidget {
@@ -23,7 +22,6 @@ class _HomePageState extends State<HomePage> {
               if (!mounted) {
                 return;
               }
-              context.go('/');
             },
             icon: const Icon(Icons.logout),
           ),
