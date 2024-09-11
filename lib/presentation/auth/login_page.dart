@@ -83,6 +83,7 @@ class _LoginPageState extends State<LoginPage> {
                                   _emailController.text,
                                   _passwordController.text,
                                 );
+                        ScaffoldMessenger.of(context).clearSnackBars();
                         if (response.success) {
                           ScaffoldMessenger.of(context).showSnackBar(
                             SnackBar(

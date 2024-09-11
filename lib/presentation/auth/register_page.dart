@@ -101,6 +101,7 @@ class _RegisterPageState extends State<RegisterPage> {
                                   _emailController.text,
                                   _passwordController.text,
                                 );
+                        ScaffoldMessenger.of(context).clearSnackBars();
                         if (response.success) {
                           ScaffoldMessenger.of(context).showSnackBar(
                             SnackBar(
